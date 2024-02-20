@@ -1,24 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
+import NotFound from './pages/NotFound';
+import Promotion from './components/Promotion';
+import { HomeLayout } from './layouts/HomeLayout';
+import MenuOffer, { loadMenuItems } from './pages/menu/MenuOffer';
+import MenuError from './pages/menu/MenuError';
+import MenuLayout from './layouts/MenuLayout';
+
+// const appStyle: React.CSSProperties = {
+//   width: "90%",
+//   margin: "auto"
+// };
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomeLayout/>,
+    errorElement: <NotFound/>,
+    children: [
+      {
+        index: true,
+        element: <Promotion/>
+      },
+      {
+        path: "/menu",
+        element: <MenuLayout/>,
+        errorElement: <MenuError/>,
+        children: [
+          {
+            path: ":meal",
+            loader: loadMenuItems,
+            element: <MenuOffer/>
+          }
+        ]
+      }
+    ]
+  }
+]);
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RouterProvider router={router}/>
     </div>
   );
 }
