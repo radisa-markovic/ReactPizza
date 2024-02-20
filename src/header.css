@@ -1,0 +1,153 @@
+.logo-holder
+{
+    /* width: 100px;
+    height: 100px; */
+    width: 25px;
+    height: 25px;
+    /* position: absolute;
+    left: 50%;
+    transform: translateX(-50%); */
+    /* margin-left: 2.5%; */
+}
+
+.logo-image
+{
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+header.header
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    background-color: #FF6B00;
+    padding-top: 10px;
+    padding-bottom: 70px;
+    position: relative;
+    gap: 20px;
+}
+
+#main-navigation
+{
+    display: flex;
+    margin-left: 2.5%;
+    background-color: teal;
+}
+
+@media screen and (max-width: 699px) 
+{
+    #main-navigation
+    {
+        order: -1;
+        flex-direction: column;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        z-index: 1;
+        transform: scale(0);
+    }
+
+    .navigation__list { flex-direction: column; }
+}
+
+@media screen and (min-width: 700px) 
+{
+    #main-navigation { margin-left: auto; }    
+}
+
+.navigation__list
+{
+    display: flex;
+}
+
+.shopping-cart-toggler
+{
+    /* width: 50px; */
+    /* height: 50px; */
+    width: 25px;
+    height: 25px;
+    margin-right: 2.5%;
+}
+
+.hamburger-menu
+{
+    order: -1;
+    /* height: 50px;
+    width: 50px; */
+    width: 25px;
+    height: 25px;
+    margin-left: 2.5%;
+    cursor: pointer;
+}
+
+.navigation__item
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+}
+
+input#navigationToggler[type='checkbox']
+{
+    display: none;
+}
+
+input#navigationToggler[type='checkbox']:checked + nav#main-navigation
+{
+    transform: scale(1);
+}
+
+@media screen and (min-width: 75px) 
+{
+    .hamburger-menu,
+    .logo-holder,
+    .shopping-cart-toggler
+    {
+        height: 40px;
+        width: 40px;
+    }   
+}
+
+@media screen and (min-width: 170px) 
+{
+    header.header
+    {
+        flex-direction: row;
+    }    
+}
+
+@media screen and (min-width: 200px) 
+{
+    .logo-holder
+    {
+        width: 60px;
+        height: 60px;
+    }    
+
+    #main-navigation { top: 60px; }
+}
+
+@media screen and (min-width: 300px) and (max-width: 699px)
+{
+    .logo-holder
+    {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 5%;
+    }    
+}
+
+@media screen and (min-width: 700px) 
+{
+    .hamburger-menu { display: none; }    
+
+    .logo-holder { margin-left: 2.5%; }
+
+    .navigation__list { gap: 10px; }
+}
