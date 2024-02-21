@@ -151,3 +151,19 @@ input#navigationToggler[type='checkbox']:checked + nav#main-navigation
 
     .navigation__list { gap: 10px; }
 }
+
+.has-dropdown { position: relative; }
+
+.dropdown
+{
+    position: absolute;
+    left: 0;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.has-dropdown:focus-within .dropdown
+{
+    opacity: 1;
+    pointer-events: auto;
+}

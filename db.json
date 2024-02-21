@@ -1,71 +1,116 @@
 {
-    "pizzas": [
-        {
-            "id": 1,
-            "name": "Kapricoza",
-            "pricePerItem": 400,
-            "ingredients": ["šunka", "salama", "kačkavalj"],
-            "imageURL": "https://www.southernliving.com/thmb/3x3cJaiOvQ8-3YxtMQX0vvh1hQw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/2652401_QFSSL_SupremePizza_00072-d910a935ba7d448e8c7545a963ed7101.jpg"        
-        },
-        {
-            "id": 2,
-            "name": "Kapricoza 2",
-            "pricePerItem": 500,
-            "ingredients": ["šunka", "salama", "kačkavalj"],
-            "imageURL": "https://www.southernliving.com/thmb/3x3cJaiOvQ8-3YxtMQX0vvh1hQw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/2652401_QFSSL_SupremePizza_00072-d910a935ba7d448e8c7545a963ed7101.jpg"        
-        },
-        {
-            "id": 3,
-            "name": "Kapricoza 3",
-            "pricePerItem": 600,
-            "ingredients": ["šunka", "salama", "kačkavalj"],
-            "imageURL": "https://upload.wikimedia.org/wikipedia/commons/9/91/Pizza-3007395.jpg"        
-        }
-    ],
-    "pancakes": [
-        {
-            "id": 1,
-            "name": "Palačinka",
-            "pricePerItem": 400,
-            "ingredients": ["beli krem", "plazma", "šlag"],
-            "imageURL": "https://www.allrecipes.com/thmb/WqWggh6NwG-r8PoeA3OfW908FUY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/21014-Good-old-Fashioned-Pancakes-mfs_001-1fa26bcdedc345f182537d95b6cf92d8.jpg"        
-        },
-        {
-            "id": 2,
-            "name": "Palačinka",
-            "pricePerItem": 400,
-            "ingredients": ["beli krem", "plazma", "šlag"],
-            "imageURL": "https://www.allrecipes.com/thmb/WqWggh6NwG-r8PoeA3OfW908FUY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/21014-Good-old-Fashioned-Pancakes-mfs_001-1fa26bcdedc345f182537d95b6cf92d8.jpg"        
-        },
-        {
-            "id": 3,
-            "name": "Palačinka",
-            "pricePerItem": 400,
-            "ingredients": ["beli krem", "plazma", "šlag"],
-            "imageURL": "https://www.allrecipes.com/thmb/WqWggh6NwG-r8PoeA3OfW908FUY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/21014-Good-old-Fashioned-Pancakes-mfs_001-1fa26bcdedc345f182537d95b6cf92d8.jpg"        
-        }
-    ],
-    "spaghetti": [
-        {
-            "id": 1,
-            "name": "Bolonjeze",
-            "pricePerItem": 400,
-            "ingredients": ["pecurke", "pavlaka", "sunka"],
-            "imageURL": "https://www.allrecipes.com/thmb/ZhDrBmciWzegNpBWB-5LXEvULao=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Easyspaghettiwithtomatosauce_11715_DDMFS_4x3_2424-8d7bf30b2622465f9dd78a2c6277eeb8.jpg"        
-        },
-        {
-            "id": 2,
-            "name": "Bolonjeze",
-            "pricePerItem": 400,
-            "ingredients": ["pecurke", "pavlaka", "sunka"],
-            "imageURL": "https://www.allrecipes.com/thmb/ZhDrBmciWzegNpBWB-5LXEvULao=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Easyspaghettiwithtomatosauce_11715_DDMFS_4x3_2424-8d7bf30b2622465f9dd78a2c6277eeb8.jpg"        
-        },
-        {
-            "id": 3,
-            "name": "Bolonjeze",
-            "pricePerItem": 400,
-            "ingredients": ["pecurke", "pavlaka", "sunka"],
-            "imageURL": "https://www.allrecipes.com/thmb/ZhDrBmciWzegNpBWB-5LXEvULao=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Easyspaghettiwithtomatosauce_11715_DDMFS_4x3_2424-8d7bf30b2622465f9dd78a2c6277eeb8.jpg"        
-        }
-    ]
+  "pizzas": [
+    {
+      "id": 1,
+      "name": "Kapricoza",
+      "pricePerItem": 400,
+      "ingredients": [
+        "šunka",
+        "salama",
+        "kačkavalj"
+      ],
+      "imageURL": "https://www.southernliving.com/thmb/3x3cJaiOvQ8-3YxtMQX0vvh1hQw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/2652401_QFSSL_SupremePizza_00072-d910a935ba7d448e8c7545a963ed7101.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Kapricoza 2",
+      "pricePerItem": 500,
+      "ingredients": [
+        "šunka",
+        "salama",
+        "kačkavalj"
+      ],
+      "imageURL": "https://www.southernliving.com/thmb/3x3cJaiOvQ8-3YxtMQX0vvh1hQw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/2652401_QFSSL_SupremePizza_00072-d910a935ba7d448e8c7545a963ed7101.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Kapricoza 3",
+      "pricePerItem": 600,
+      "ingredients": [
+        "šunka",
+        "salama",
+        "kačkavalj"
+      ],
+      "imageURL": "https://upload.wikimedia.org/wikipedia/commons/9/91/Pizza-3007395.jpg"
+    }
+  ],
+  "pancakes": [
+    {
+      "id": 1,
+      "name": "Palačinka",
+      "pricePerItem": 400,
+      "ingredients": [
+        "beli krem",
+        "plazma",
+        "šlag"
+      ],
+      "imageURL": "https://www.allrecipes.com/thmb/WqWggh6NwG-r8PoeA3OfW908FUY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/21014-Good-old-Fashioned-Pancakes-mfs_001-1fa26bcdedc345f182537d95b6cf92d8.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Palačinka",
+      "pricePerItem": 400,
+      "ingredients": [
+        "beli krem",
+        "plazma",
+        "šlag"
+      ],
+      "imageURL": "https://www.allrecipes.com/thmb/WqWggh6NwG-r8PoeA3OfW908FUY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/21014-Good-old-Fashioned-Pancakes-mfs_001-1fa26bcdedc345f182537d95b6cf92d8.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Palačinka",
+      "pricePerItem": 400,
+      "ingredients": [
+        "beli krem",
+        "plazma",
+        "šlag"
+      ],
+      "imageURL": "https://www.allrecipes.com/thmb/WqWggh6NwG-r8PoeA3OfW908FUY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/21014-Good-old-Fashioned-Pancakes-mfs_001-1fa26bcdedc345f182537d95b6cf92d8.jpg"
+    }
+  ],
+  "spaghetti": [
+    {
+      "id": 1,
+      "name": "Bolonjeze",
+      "pricePerItem": 400,
+      "ingredients": [
+        "pecurke",
+        "pavlaka",
+        "sunka"
+      ],
+      "imageURL": "https://www.allrecipes.com/thmb/ZhDrBmciWzegNpBWB-5LXEvULao=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Easyspaghettiwithtomatosauce_11715_DDMFS_4x3_2424-8d7bf30b2622465f9dd78a2c6277eeb8.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Bolonjeze",
+      "pricePerItem": 400,
+      "ingredients": [
+        "pecurke",
+        "pavlaka",
+        "sunka"
+      ],
+      "imageURL": "https://www.allrecipes.com/thmb/ZhDrBmciWzegNpBWB-5LXEvULao=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Easyspaghettiwithtomatosauce_11715_DDMFS_4x3_2424-8d7bf30b2622465f9dd78a2c6277eeb8.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Bolonjeze",
+      "pricePerItem": 400,
+      "ingredients": [
+        "pecurke",
+        "pavlaka",
+        "sunka"
+      ],
+      "imageURL": "https://www.allrecipes.com/thmb/ZhDrBmciWzegNpBWB-5LXEvULao=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Easyspaghettiwithtomatosauce_11715_DDMFS_4x3_2424-8d7bf30b2622465f9dd78a2c6277eeb8.jpg"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1
+    },
+    {
+      "id": "EBzcW_uAQYoDJ2OqlzLui",
+      "name": "aaaaa"
+    }
+  ]
 }
