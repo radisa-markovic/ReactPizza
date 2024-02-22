@@ -1,11 +1,12 @@
-import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
 import { AppState } from "../models/AppState";
 import { API_BASE_URL } from "../constants";
+import Pizza from "../models/Pizza";
 
 interface OrderState
 {
     totalCost: number,
-    items: any[]
+    items: Pizza[]
 }
 
 const initialState: OrderState = {
@@ -19,14 +20,9 @@ export const confirmOrder = createAsyncThunk("orders/confirm", async (order: any
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            id: nanoid(),
-            name: "aaaaa"
-        })
+        body: JSON.stringify(order)
     });
     if(!response.ok) throw new Error("Order not good");
-
-    console.log(await response.json());
 
     return `${response?.status}: ${response?.statusText}`;
 });
@@ -44,7 +40,7 @@ const orderSlice = createSlice({
         builder.addCase(confirmOrder.pending, (state, action) => {
             console.log("Order is being processed");
         }).addCase(confirmOrder.fulfilled, (state, action) => {
-            state.items.push(action.payload);
+            state.items.push(action.payload as unknown as Pizza);
         })
     }
 });

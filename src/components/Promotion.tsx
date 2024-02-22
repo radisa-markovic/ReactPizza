@@ -1,8 +1,22 @@
 import { FC } from "react";
 import PromoArticle from "../pages/menu/MenuItem";
 import { PIZZA_URL } from "../pages/LandingPage";
+import { API_BASE_URL } from "../constants";
+import { useLoaderData } from "react-router-dom";
+import Pizza from "../models/Pizza";
 
 const Promotion: FC<{}> = () => {
+    const promotionItems = useLoaderData() as Pizza[];
+
+    const PromotionArticles = promotionItems.length > 0 && promotionItems.map((promotionItem) => (
+        <PromoArticle
+            imageURL={promotionItem.imageURL}
+            name={promotionItem.name}
+            ingredients={promotionItem.ingredients}
+            pricePerItem={promotionItem.pricePerItem}
+        />
+    ));
+
     return (
         <div>
             <div style={{backgroundColor: "#FF6B00", paddingBottom: "30px"}}>
@@ -43,24 +57,7 @@ const Promotion: FC<{}> = () => {
                     gridTemplateColumns: "1fr 1fr 1fr",
                     gap: "30px"
                 }}>
-                    <PromoArticle  
-                        name="Hardcoded pica"
-                        pricePerItem={300}
-                        ingredients={["sunka", "hleb"]}   
-                        imageURL=""             
-                    />
-                    <PromoArticle  
-                        name="Hardcoded pica"
-                        pricePerItem={300}
-                        ingredients={["sunka", "hleb"]}
-                        imageURL=""                
-                    />
-                    <PromoArticle  
-                        name="Hardcoded pica"
-                        pricePerItem={300}
-                        ingredients={["sunka", "hleb"]}
-                        imageURL=""                
-                    />
+                    { PromotionArticles }
                 </div>
             </article>
         </div>
@@ -68,3 +65,11 @@ const Promotion: FC<{}> = () => {
 }
 
 export default Promotion;
+
+export async function loadPromotionItems()
+{
+   const response = await fetch(API_BASE_URL + "/pizzas?_limit=3");
+   const promotionItems = await response.json();
+
+   return promotionItems;
+}

@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
 import NotFound from './pages/NotFound';
-import Promotion from './components/Promotion';
+import Promotion, { loadPromotionItems } from './components/Promotion';
 import { HomeLayout } from './layouts/HomeLayout';
 import MenuOffer, { loadMenuItems } from './pages/menu/MenuOffer';
 import MenuError from './pages/menu/MenuError';
@@ -20,7 +20,8 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Promotion/>
+        element: <Promotion/>,
+        loader: loadPromotionItems
       },
       {
         path: "/menu",

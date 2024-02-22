@@ -5,6 +5,8 @@ import useRemovePage from "../uselessHooks/useRemovePage";
 import useAlcohol from "../uselessHooks/useAlcohol";
 import { useDispatch, useSelector } from "react-redux";
 import { confirmOrder, selectOrderItems, selectPrice } from "../store/order.slice";
+import { nanoid } from "@reduxjs/toolkit";
+import Pizza from "../models/Pizza";
 
 const HAMBUGER_MENU = "https://cdn.iconscout.com/icon/free/png-256/free-hamburger-menu-462145.png?f=webp";
 const COMPANY_LOGO = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Pizza_Hut_classic_logo.svg/200px-Pizza_Hut_classic_logo.svg.png"
@@ -42,7 +44,25 @@ const navigationItem: React.CSSProperties = {
 const Header: FC<{}> = () => {
     const dispatch = useDispatch();
     const totalPrice = useSelector(selectPrice);
-    const orderItems = useSelector(selectOrderItems) as any[];
+    const orderedItems = useSelector(selectOrderItems) as Pizza[];
+
+    const ItemsInOrder = orderedItems.length === 0
+    ? <p>No items ordered</p>
+    : orderedItems.map((orderedItem) => (
+        <li className="order__item">
+            <div className="order__image-holder">
+                <img 
+                    src={orderedItem.imageURL} 
+                    alt="" 
+                />
+            </div>
+            <div className="order__details">
+                <p className="order__title">{ orderedItem.name }</p>
+                <p>{ orderedItem.pricePerItem } RSD</p>
+                <div className="progress-bar"></div>
+            </div>
+        </li>
+    ));
 
     const HamburgerMenu = () => (
         <>
@@ -100,36 +120,37 @@ const Header: FC<{}> = () => {
                             Pozovi
                         </button>
                     </li>
-                    <li style={navigationItem}>
-                        {/* <button onClick={() => alert("Shopping cart (not implemented)")}>
-                            Shopping cart
-                        </button> */}
-                        <p>Ukupna cena: { Number(totalPrice) || 0 } RSD</p>
-                        { orderItems.map((item) => (
-                            <div>
-                                <div>Ime: {item.name}</div>
-                                <div>{item.pricePerItem} RSD</div>
-                            </div>
-                        )) }
-                    </li>
                 </ul>
             </nav>
             <button className="shopping-cart-toggler has-dropdown">
-                <img src="./Kolica.png" alt="" />
-                <ul className="dropdown">
-                    <li className="order__item">
-                        <h2>Pizza</h2>
-                        <button 
-                            onClick={() => alert("Klik")}
-                        >
-                            Klik
-                        </button>
-                    </li>
+                <div className="shopping-cart-image-holder">
+                    <img 
+                        src="./Kolica.png" 
+                        alt="Shopping cart icon" 
+                    />
+                    <span className="ordered-items-counter">
+                        { orderedItems.length || 0 }
+                    </span>
+                </div>
+                <ul className="dropdown" style={{
+                    left: 'initial', right: 0, top: '50px',
+                    backgroundColor: 'white',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '10px',
+                    maxHeight: '150px',
+                    overflowY: 'scroll'
+                }}>
+                    { ItemsInOrder }
                 </ul>
                 <button 
                     style={{marginTop: "100px"}} 
                     //@ts-ignore
-                    onClick={() => dispatch(confirmOrder({name: "aaaa"})).unwrap()}
+                    onClick={() => dispatch(confirmOrder({
+                        id: nanoid(),
+                        name: "aaaa",
+                        price: 300
+                    }))}
                 >
                     Confirm order
                 </button>

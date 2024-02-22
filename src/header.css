@@ -167,3 +167,40 @@ input#navigationToggler[type='checkbox']:checked + nav#main-navigation
     opacity: 1;
     pointer-events: auto;
 }
+
+.shopping-cart-image-holder
+{
+    position: relative;
+}
+
+.ordered-items-counter
+{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    font-weight: 700;
+    padding: 3px;
+    border-radius: 50%;
+}
+
+.order__item
+{
+    display: flex;
+    min-width: 150px;
+}
+
+.order__details { padding: 3px; }
+
+.order__title 
+{ 
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.order__image-holder
+{
+    max-width: 50%;
+    height: 60px;
+}

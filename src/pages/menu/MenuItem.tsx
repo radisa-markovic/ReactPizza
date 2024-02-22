@@ -3,12 +3,17 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../../store/order.slice";
 
 const PromoArticle: FC<{name: string, pricePerItem: number, ingredients: string[], imageURL: string}> = ({
-    name, pricePerItem, ingredients, imageURL
+    name, pricePerItem, imageURL, ingredients
 }) => {
     const dispatch = useDispatch();
 
     const addToCart = () => {
-        dispatch(addItem({name, pricePerItem}));
+        dispatch(addItem({
+            imageURL,
+            name, 
+            ingredients,
+            pricePerItem
+        }));
     }
 
     const IngredientsList = ingredients.map((ingredient) => (
