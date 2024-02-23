@@ -10,6 +10,7 @@ const Promotion: FC<{}> = () => {
 
     const PromotionArticles = promotionItems.length > 0 && promotionItems.map((promotionItem) => (
         <PromoArticle
+            id={promotionItem.id}
             imageURL={promotionItem.imageURL}
             name={promotionItem.name}
             ingredients={promotionItem.ingredients}

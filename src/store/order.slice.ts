@@ -27,6 +27,21 @@ export const confirmOrder = createAsyncThunk("orders/confirm", async (order: any
     return `${response?.status}: ${response?.statusText}`;
 });
 
+export const updateOrder = createAsyncThunk("orders/updateOrder", async (order: {id: string | number, items: Pizza[], totalCost: number}) => {
+    // const { id } = order;
+
+    const response = await fetch(API_BASE_URL + "/orders/" + "1", {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(order)
+    });
+
+    const newtorkObject = await response.json();
+    return newtorkObject;
+});
+
 const orderSlice = createSlice({
     name: 'order',
     initialState,
@@ -41,7 +56,9 @@ const orderSlice = createSlice({
             console.log("Order is being processed");
         }).addCase(confirmOrder.fulfilled, (state, action) => {
             state.items.push(action.payload as unknown as Pizza);
-        })
+        }).addCase(updateOrder.fulfilled, (state, action) => {
+            state.items = action.payload.items;
+        });
     }
 });
 

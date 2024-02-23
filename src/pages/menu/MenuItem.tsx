@@ -2,13 +2,14 @@ import { FC } from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../store/order.slice";
 
-const PromoArticle: FC<{name: string, pricePerItem: number, ingredients: string[], imageURL: string}> = ({
-    name, pricePerItem, imageURL, ingredients
+const PromoArticle: FC<{id: number, name: string, pricePerItem: number, ingredients: string[], imageURL: string}> = ({
+    id, name, pricePerItem, imageURL, ingredients
 }) => {
     const dispatch = useDispatch();
 
     const addToCart = () => {
         dispatch(addItem({
+            id,
             imageURL,
             name, 
             ingredients,

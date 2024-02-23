@@ -183,6 +183,12 @@ input#navigationToggler[type='checkbox']:checked + nav#main-navigation
     font-weight: 700;
     padding: 3px;
     border-radius: 50%;
+
+    aspect-ratio: 1 / 1;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .order__item

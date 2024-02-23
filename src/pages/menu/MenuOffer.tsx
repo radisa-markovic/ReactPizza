@@ -23,6 +23,7 @@ const MenuOffer: FC<{}> = () => {
                     menuItems && menuItems.map((menuItem) => {
                         return (
                             <MenuItem
+                                id={menuItem.id}
                                 imageURL={menuItem.imageURL}
                                 ingredients={menuItem.ingredients}
                                 name={menuItem.name}

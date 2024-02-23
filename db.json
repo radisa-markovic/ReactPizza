@@ -106,9 +106,9 @@
   ],
   "orders": [
     {
-      "id": "vtk4qEkgi6EWWRGVtS1QS",
-      "name": "aaaa",
-      "price": 300
+      "id": 1,
+      "items": [],
+      "totalCost": 300
     }
   ]
 }

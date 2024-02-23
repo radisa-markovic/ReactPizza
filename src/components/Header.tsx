@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import '../header.css';
 import useRemovePage from "../uselessHooks/useRemovePage";
 import useAlcohol from "../uselessHooks/useAlcohol";
@@ -142,18 +142,13 @@ const Header: FC<{}> = () => {
                     overflowY: 'scroll'
                 }}>
                     { ItemsInOrder }
+                    { 
+                        orderedItems.length > 0 &&
+                        <Link to="/checkout">
+                            Go to checkout
+                        </Link>                        
+                    }
                 </ul>
-                <button 
-                    style={{marginTop: "100px"}} 
-                    //@ts-ignore
-                    onClick={() => dispatch(confirmOrder({
-                        id: nanoid(),
-                        name: "aaaa",
-                        price: 300
-                    }))}
-                >
-                    Confirm order
-                </button>
             </button>
         </header>
     );

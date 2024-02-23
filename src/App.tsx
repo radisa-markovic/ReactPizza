@@ -6,6 +6,7 @@ import { HomeLayout } from './layouts/HomeLayout';
 import MenuOffer, { loadMenuItems } from './pages/menu/MenuOffer';
 import MenuError from './pages/menu/MenuError';
 import MenuLayout from './layouts/MenuLayout';
+import Checkout from './pages/Checkout';
 
 // const appStyle: React.CSSProperties = {
 //   width: "90%",
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             element: <MenuOffer/>
           }
         ]
+      },
+      {
+        path: "/checkout",
+        element: <Checkout/>
       }
     ]
   }
