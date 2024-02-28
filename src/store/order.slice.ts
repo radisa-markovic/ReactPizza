@@ -1,4 +1,4 @@
-import { PayloadAction, createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AppState } from "../models/AppState";
 import { API_BASE_URL } from "../constants";
 import Pizza from "../models/Pizza";
@@ -27,20 +27,20 @@ export const confirmOrder = createAsyncThunk("orders/confirm", async (order: any
     return `${response?.status}: ${response?.statusText}`;
 });
 
-export const updateOrder = createAsyncThunk("orders/updateOrder", async (order: {id: string | number, items: Pizza[], totalCost: number}) => {
-    // const { id } = order;
+// export const updateOrder = createAsyncThunk("orders/updateOrder", async (order: {id: string | number, items: Pizza[], totalCost: number}) => {
+//     // const { id } = order;
 
-    const response = await fetch(API_BASE_URL + "/orders/" + "1", {
-        method: "PUT",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(order)
-    });
+//     const response = await fetch(API_BASE_URL + "/orders/" + "1", {
+//         method: "PUT",
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(order)
+//     });
 
-    const newtorkObject = await response.json();
-    return newtorkObject;
-});
+//     const newtorkObject = await response.json();
+//     return newtorkObject;
+// });
 
 const orderSlice = createSlice({
     name: 'order',
@@ -48,7 +48,25 @@ const orderSlice = createSlice({
     reducers: {
         addItem: (state, action) => {
             state.items.push(action.payload);
-            state.totalCost += action.payload.pricePerItem;
+            state.totalCost += action.payload.pricePerItem * action.payload.itemQuantity;
+        },
+        changeItemQuantity: (state, action) => {
+            state.totalCost = 0;
+
+            state.items.forEach((item) => {
+                if(item.name === action.payload.itemName)
+                    item.itemQuantity = action.payload.itemQuantity;
+        
+                state.totalCost += item.pricePerItem * item.itemQuantity;
+            });
+        },
+        updateOrder: (state, action) => {
+            console.log(action.payload);
+            state.items = action.payload.items;
+            state.totalCost = 0;
+            action.payload.items.forEach((item: any) => {
+                state.totalCost += Number(item.pricePerItem) * Number(item.itemQuantity) || 0;
+            })
         }
     },
     extraReducers(builder) {
@@ -56,8 +74,6 @@ const orderSlice = createSlice({
             console.log("Order is being processed");
         }).addCase(confirmOrder.fulfilled, (state, action) => {
             state.items.push(action.payload as unknown as Pizza);
-        }).addCase(updateOrder.fulfilled, (state, action) => {
-            state.items = action.payload.items;
         });
     }
 });
@@ -65,6 +81,6 @@ const orderSlice = createSlice({
 export const selectPrice = (state: AppState) => state.orders.totalCost;
 export const selectOrderItems = (state: AppState) => state.orders.items;
 
-export const { addItem } = orderSlice.actions;
+export const { addItem, updateOrder, changeItemQuantity } = orderSlice.actions;
 
 export default orderSlice.reducer;

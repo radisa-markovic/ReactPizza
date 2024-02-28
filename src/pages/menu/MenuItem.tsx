@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../store/order.slice";
 
@@ -6,6 +6,12 @@ const PromoArticle: FC<{id: number, name: string, pricePerItem: number, ingredie
     id, name, pricePerItem, imageURL, ingredients
 }) => {
     const dispatch = useDispatch();
+    const [itemQuantity, setItemQuantity] = useState<number>(0);
+
+    const onItemAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { target } = event;
+        setItemQuantity(Number(target.value) || 0);
+    }
 
     const addToCart = () => {
         dispatch(addItem({
@@ -13,7 +19,8 @@ const PromoArticle: FC<{id: number, name: string, pricePerItem: number, ingredie
             imageURL,
             name, 
             ingredients,
-            pricePerItem
+            pricePerItem,
+            itemQuantity
         }));
     }
 
@@ -84,7 +91,12 @@ const PromoArticle: FC<{id: number, name: string, pricePerItem: number, ingredie
                         <option value="smallSize">Mala (40cm)</option>
                     </select>
                     <span>X</span>
-                    <input type="number" name="pizzaCount"/>
+                    <input 
+                        type="number" 
+                        name="pizzaCount"
+                        value={itemQuantity}
+                        onChange={onItemAmountChange}
+                    />
                 </div>
                 <div className="flex-group"
                     style={{

@@ -85,13 +85,15 @@ const Header: FC<{}> = () => {
 
     return (
         <header className="header">
-            <div className="logo-holder">
-                <img 
-                    src={COMPANY_LOGO} 
-                    alt="logo"
-                    className="logo-image" 
-                />
-            </div>
+            <Link to="/">
+                <div className="logo-holder">
+                    <img 
+                        src={COMPANY_LOGO} 
+                        alt="logo"
+                        className="logo-image" 
+                    />
+                </div>
+            </Link>
             { HamburgerMenu() }
             <nav 
                 className="main-navigation"

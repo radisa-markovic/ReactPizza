@@ -4,5 +4,6 @@ export default interface Pizza
     name: string,
     ingredients: string[],
     imageURL: string,
-    pricePerItem: number
+    pricePerItem: number,
+    itemQuantity: number
 }

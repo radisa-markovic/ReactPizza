@@ -1,13 +1,16 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useSelector } from "react-redux";
 import Pizza from "../models/Pizza";
-import { selectOrderItems, updateOrder } from "../store/order.slice";
+import { changeItemQuantity, selectOrderItems, selectPrice, updateOrder } from "../store/order.slice";
 import '../checkout.css';
 import { useDispatch } from "react-redux";
 
 const Checkout: FC<{}> = () => {
+    const [itemAmount, setItemAmount] = useState(1);
+
     const dispatch = useDispatch();
     const orderedItems = useSelector(selectOrderItems) as Pizza[];
+    const totalPrice = useSelector(selectPrice);
 
     const ItemsInOrder = orderedItems.length === 0
     ? <p>No items ordered</p>
@@ -33,15 +36,26 @@ const Checkout: FC<{}> = () => {
                     </p>
                 </div>
                 <div className="checkout__price-holder">
-                    { orderedItem.pricePerItem } &times; 3 = 1500 RSD
+                    { orderedItem.pricePerItem } &times; 
+                    <input 
+                        type="number" 
+                        name="checkoutItemQuantityChange"
+                        value={orderedItem.itemQuantity}
+                        onChange={(e) => {
+                            dispatch(changeItemQuantity({
+                                itemName: orderedItem.name,
+                                itemQuantity: e.target.value
+                            })
+                            )
+                        }}    
+                    />{ orderedItem.itemQuantity } 
+                    = { orderedItem.pricePerItem * orderedItem.itemQuantity } RSD
                 </div>
                 <button 
                     className="checkout__remove-item"
                     //@ts-ignore
                     onClick={() => dispatch(updateOrder({
-                        id: 1,
                         items: orderedItems.filter((item) => item.id !== orderedItem.id),
-                        totalCost: 300                        
                     }))}
                 >
                     &times;
@@ -57,6 +71,7 @@ const Checkout: FC<{}> = () => {
                 { ItemsInOrder }
             </ul>
             <hr className="checkout__separator"/>
+            <p>Total price: { totalPrice }</p>
             <button className="checkout__button">
                 Confirm order
             </button>
