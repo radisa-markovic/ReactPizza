@@ -1,12 +1,16 @@
 import React, { FC, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../store/order.slice";
+import Notifications from "../../components/Notifications";
+import { addNotification, removeNotification } from "../../store/notifications.slice";
+import { nanoid } from "@reduxjs/toolkit";
 
-const PromoArticle: FC<{id: number, name: string, pricePerItem: number, ingredients: string[], imageURL: string}> = ({
+const MenuItem: FC<{id: number, name: string, pricePerItem: number, ingredients: string[], imageURL: string}> = ({
     id, name, pricePerItem, imageURL, ingredients
 }) => {
     const dispatch = useDispatch();
     const [itemQuantity, setItemQuantity] = useState<number>(0);
+    const [itemIsAdded, setItemIsAdded] = useState<boolean>(false);
 
     const onItemAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { target } = event;
@@ -22,6 +26,19 @@ const PromoArticle: FC<{id: number, name: string, pricePerItem: number, ingredie
             pricePerItem,
             itemQuantity
         }));
+
+        const notificationID = nanoid();
+
+        dispatch(addNotification({
+            id: notificationID,
+            content: "Alert " + name
+        }));
+
+        setTimeout(() => {
+            dispatch(removeNotification({
+                id: notificationID
+            }));
+        }, 3000);
     }
 
     const IngredientsList = ingredients.map((ingredient) => (
@@ -123,4 +140,4 @@ const PromoArticle: FC<{id: number, name: string, pricePerItem: number, ingredie
     );
 }
 
-export default PromoArticle;
+export default MenuItem;

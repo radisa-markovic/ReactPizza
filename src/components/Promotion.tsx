@@ -1,5 +1,5 @@
 import { FC } from "react";
-import PromoArticle from "../pages/menu/MenuItem";
+import MenuItem from "../pages/menu/MenuItem";
 import { PIZZA_URL } from "../pages/LandingPage";
 import { API_BASE_URL } from "../constants";
 import { useLoaderData } from "react-router-dom";
@@ -9,7 +9,7 @@ const Promotion: FC<{}> = () => {
     const promotionItems = useLoaderData() as Pizza[];
 
     const PromotionArticles = promotionItems.length > 0 && promotionItems.map((promotionItem) => (
-        <PromoArticle
+        <MenuItem
             id={promotionItem.id}
             imageURL={promotionItem.imageURL}
             name={promotionItem.name}

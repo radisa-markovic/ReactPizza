@@ -44,11 +44,16 @@ const Checkout: FC<{}> = () => {
                         onChange={(e) => {
                             dispatch(changeItemQuantity({
                                 itemName: orderedItem.name,
-                                itemQuantity: e.target.value
+                                itemQuantity: Number(e.target.value)
                             })
                             )
+                        }}
+                        style={{
+                            maxWidth: "45px",
+                            padding: "5px",
+                            textAlign: "center"
                         }}    
-                    />{ orderedItem.itemQuantity } 
+                    /> 
                     = { orderedItem.pricePerItem * orderedItem.itemQuantity } RSD
                 </div>
                 <button 

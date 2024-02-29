@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import orderReducer from './order.slice';
+import notificationsReducer from './notifications.slice';
 
 export default configureStore({
     reducer: {
-        orders: orderReducer
+        orders: orderReducer,
+        notifications: notificationsReducer
     }
 });

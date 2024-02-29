@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AppState } from "../models/AppState";
 import { API_BASE_URL } from "../constants";
 import Pizza from "../models/Pizza";
@@ -46,11 +46,11 @@ const orderSlice = createSlice({
     name: 'order',
     initialState,
     reducers: {
-        addItem: (state, action) => {
+        addItem: (state, action: PayloadAction<Pizza>) => {
             state.items.push(action.payload);
             state.totalCost += action.payload.pricePerItem * action.payload.itemQuantity;
         },
-        changeItemQuantity: (state, action) => {
+        changeItemQuantity: (state, action: PayloadAction<{itemName: string, itemQuantity: number}>) => {
             state.totalCost = 0;
 
             state.items.forEach((item) => {
@@ -60,7 +60,7 @@ const orderSlice = createSlice({
                 state.totalCost += item.pricePerItem * item.itemQuantity;
             });
         },
-        updateOrder: (state, action) => {
+        updateOrder: (state, action: PayloadAction<{items: any[]}>) => {
             console.log(action.payload);
             state.items = action.payload.items;
             state.totalCost = 0;
