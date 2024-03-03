@@ -36,7 +36,7 @@ img
 #add-to-cart-animation
 {
     position: fixed;
-    bottom: 10%;
+    top: 10%;
     right: 0;
     background-color: pink;
     color: black;

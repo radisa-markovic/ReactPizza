@@ -4,12 +4,13 @@ import Pizza from "../models/Pizza";
 import { changeItemQuantity, selectOrderItems, selectPrice, updateOrder } from "../store/order.slice";
 import '../checkout.css';
 import { useDispatch } from "react-redux";
+import OrderItem from "../models/OrderItem";
 
 const Checkout: FC<{}> = () => {
     const [itemAmount, setItemAmount] = useState(1);
 
     const dispatch = useDispatch();
-    const orderedItems = useSelector(selectOrderItems) as Pizza[];
+    const orderedItems = useSelector(selectOrderItems) as OrderItem[];
     const totalPrice = useSelector(selectPrice);
 
     const ItemsInOrder = orderedItems.length === 0

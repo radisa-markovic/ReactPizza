@@ -3,7 +3,12 @@
     {
       "id": 1,
       "name": "Kapricoza",
-      "pricePerItem": 400,
+      "smallSizePrice": 300,
+      "smallSizeCaption": "Mala (40cm)",
+      "mediumSizePrice": 400,
+      "mediumSizeCaption": "Srednja (50cm)",
+      "largeSizePrice": 500,
+      "largeSizeCaption": "Porodična (66cm)",
       "ingredients": [
         "šunka",
         "salama",
@@ -14,7 +19,12 @@
     {
       "id": 2,
       "name": "Kapricoza 2",
-      "pricePerItem": 500,
+      "smallSizePrice": 300,
+      "smallSizeCaption": "Mala (40cm)",
+      "mediumSizePrice": 400,
+      "mediumSizeCaption": "Srednja (50cm)",
+      "largeSizePrice": 500,
+      "largeSizeCaption": "Porodična (66cm)",
       "ingredients": [
         "šunka",
         "salama",
@@ -25,7 +35,12 @@
     {
       "id": 3,
       "name": "Kapricoza 3",
-      "pricePerItem": 600,
+      "smallSizePrice": 300,
+      "smallSizeCaption": "Mala (40cm)",
+      "mediumSizePrice": 600,
+      "mediumSizeCaption": "Srednja (50cm)",
+      "largeSizePrice": 700,
+      "largeSizeCaption": "Porodična (66cm)",
       "ingredients": [
         "šunka",
         "salama",

@@ -14,7 +14,12 @@ const Promotion: FC<{}> = () => {
             imageURL={promotionItem.imageURL}
             name={promotionItem.name}
             ingredients={promotionItem.ingredients}
-            pricePerItem={promotionItem.pricePerItem}
+            smallSizePrice={promotionItem.smallSizePrice}
+            smallSizeCaption={promotionItem.smallSizeCaption}
+            mediumSizePrice={promotionItem.mediumSizePrice}
+            mediumSizeCaption={promotionItem.mediumSizeCaption}
+            largeSizePrice={promotionItem.largeSizePrice}
+            largeSizeCaption={promotionItem.largeSizeCaption}
         />
     ));
 

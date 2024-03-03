@@ -3,6 +3,16 @@ import { createPortal } from "react-dom";
 import { useSelector } from "react-redux";
 import { selectNotifications } from "../store/notifications.slice";
 
+const Notification: FC<{id: number | string, content: string}> = (
+    { id, content }
+) => {
+    return (
+        <div>
+            <p style={{fontSize: "36px"}}>{ content }</p>
+        </div>
+    );
+}
+
 const Notifications: FC<any> = ({children}) => {
     const notifications = useSelector(selectNotifications);
 
@@ -11,7 +21,10 @@ const Notifications: FC<any> = ({children}) => {
             {
                 notifications.map((notification) => (
                     createPortal(
-                        <h2 key={notification.id}>{notification.content}</h2>, 
+                        <Notification 
+                            id={notification.id}
+                            content={notification.content}
+                        />, 
                         document.querySelector("#add-to-cart-animation")!
                     )                
                 ))

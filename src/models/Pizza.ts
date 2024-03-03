@@ -4,6 +4,12 @@ export default interface Pizza
     name: string,
     ingredients: string[],
     imageURL: string,
-    pricePerItem: number,
-    itemQuantity: number
+    smallSizePrice: number,
+    smallSizeCaption: string,
+    mediumSizePrice: number,
+    mediumSizeCaption: string,
+    largeSizePrice: number,
+    largeSizeCaption: string,
+    itemQuantity: number,
+    pizzaSize: string
 }

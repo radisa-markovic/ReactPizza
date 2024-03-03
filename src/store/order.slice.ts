@@ -2,11 +2,12 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AppState } from "../models/AppState";
 import { API_BASE_URL } from "../constants";
 import Pizza from "../models/Pizza";
+import OrderItem from "../models/OrderItem";
 
 interface OrderState
 {
     totalCost: number,
-    items: Pizza[]
+    items: OrderItem[]
 }
 
 const initialState: OrderState = {
@@ -46,7 +47,7 @@ const orderSlice = createSlice({
     name: 'order',
     initialState,
     reducers: {
-        addItem: (state, action: PayloadAction<Pizza>) => {
+        addItem: (state, action: PayloadAction<OrderItem>) => {
             state.items.push(action.payload);
             state.totalCost += action.payload.pricePerItem * action.payload.itemQuantity;
         },
@@ -73,7 +74,7 @@ const orderSlice = createSlice({
         builder.addCase(confirmOrder.pending, (state, action) => {
             console.log("Order is being processed");
         }).addCase(confirmOrder.fulfilled, (state, action) => {
-            state.items.push(action.payload as unknown as Pizza);
+            state.items.push(action.payload as unknown as OrderItem);
         });
     }
 });

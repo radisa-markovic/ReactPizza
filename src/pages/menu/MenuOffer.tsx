@@ -27,7 +27,12 @@ const MenuOffer: FC<{}> = () => {
                                 imageURL={menuItem.imageURL}
                                 ingredients={menuItem.ingredients}
                                 name={menuItem.name}
-                                pricePerItem={menuItem.pricePerItem}
+                                smallSizePrice={menuItem.smallSizePrice}
+                                smallSizeCaption={menuItem.smallSizeCaption}
+                                mediumSizePrice={menuItem.mediumSizePrice}
+                                mediumSizeCaption={menuItem.mediumSizeCaption}
+                                largeSizePrice={menuItem.largeSizePrice}
+                                largeSizeCaption={menuItem.largeSizeCaption}
                             />
                         )
                     })

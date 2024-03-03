@@ -58,7 +58,7 @@ const Header: FC<{}> = () => {
             </div>
             <div className="order__details">
                 <p className="order__title">{ orderedItem.name }</p>
-                <p>{ orderedItem.pricePerItem } RSD</p>
+                <p>{ orderedItem.mediumSizePrice } RSD</p>
                 <div className="progress-bar"></div>
             </div>
         </li>

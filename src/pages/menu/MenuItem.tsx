@@ -1,37 +1,68 @@
 import React, { FC, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../store/order.slice";
-import Notifications from "../../components/Notifications";
 import { addNotification, removeNotification } from "../../store/notifications.slice";
 import { nanoid } from "@reduxjs/toolkit";
 
-const MenuItem: FC<{id: number, name: string, pricePerItem: number, ingredients: string[], imageURL: string}> = ({
-    id, name, pricePerItem, imageURL, ingredients
+interface MenuItemProps
+{
+    id: number,
+    name: string, 
+    smallSizePrice: number,
+    smallSizeCaption: string,
+    mediumSizePrice: number,
+    mediumSizeCaption: string,
+    largeSizePrice: number,
+    largeSizeCaption: string,
+    ingredients: string[],
+    imageURL: string
+}
+
+const MenuItem: FC<MenuItemProps> = ({
+    id, 
+    name, 
+    smallSizePrice, 
+    smallSizeCaption,
+    mediumSizePrice,
+    mediumSizeCaption, 
+    largeSizePrice, 
+    largeSizeCaption,
+    imageURL, 
+    ingredients
 }) => {
     const dispatch = useDispatch();
-    const [itemQuantity, setItemQuantity] = useState<number>(0);
-    const [itemIsAdded, setItemIsAdded] = useState<boolean>(false);
+    const [itemQuantity, setItemQuantity] = useState<number>(1);
+    const [sizeCaption, setSizeCaption] = useState<string>(mediumSizeCaption);
+    const [pricePerSize, setPricePerSize] = useState<number>(Number(mediumSizePrice) || 400);
 
     const onItemAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { target } = event;
         setItemQuantity(Number(target.value) || 0);
     }
 
+    const onPizzaSizeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const { target } = event;
+        setPricePerSize(Number(target.value) || 400);
+        /**==> experimentally discovered value */
+        setSizeCaption(target.selectedOptions[0].innerText)
+    }
+
     const addToCart = () => {
         dispatch(addItem({
             id,
             imageURL,
-            name, 
+            name: name + " " + sizeCaption, 
             ingredients,
-            pricePerItem,
-            itemQuantity
+            pricePerItem: pricePerSize,
+            itemQuantity,
+            size: sizeCaption
         }));
 
         const notificationID = nanoid();
 
         dispatch(addNotification({
             id: notificationID,
-            content: "Alert " + name
+            content: "Item added: " + name
         }));
 
         setTimeout(() => {
@@ -102,10 +133,20 @@ const MenuItem: FC<{id: number, name: string, pricePerItem: number, ingredients:
                         justifyContent: "space-between"
                     }}
                 >
-                    <select name="sizeSelect" id="sizeSelect">
-                        <option value="familySize">Porodična (66cm)</option>
-                        <option value="mediumSize">Srednja (50cm)</option>
-                        <option value="smallSize">Mala (40cm)</option>
+                    <select 
+                        name="sizeSelect" 
+                        id="sizeSelect"
+                        onChange={onPizzaSizeChange}                        
+                    >
+                        <option value={largeSizePrice}>   
+                            {largeSizeCaption}
+                        </option>
+                        <option value={mediumSizePrice}>
+                            {mediumSizeCaption}
+                        </option>
+                        <option value={smallSizePrice}>
+                            {smallSizeCaption}
+                        </option>
                     </select>
                     <span>X</span>
                     <input 
@@ -123,7 +164,7 @@ const MenuItem: FC<{id: number, name: string, pricePerItem: number, ingredients:
                 >
                     <span style={{
                         fontSize: "32px"
-                    }}>{pricePerItem} RSD</span>
+                    }}>{pricePerSize} RSD</span>
                     <button className="add-to-card"
                         style={{
                             backgroundColor: "orange",
